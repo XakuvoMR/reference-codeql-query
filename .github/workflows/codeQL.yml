@@ -1,6 +1,12 @@
 name: "Code Scanning - Action"
 
 on:
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+        
   pull_request:
     branches: [main]
 
@@ -22,6 +28,6 @@ jobs:
         uses: github/codeql-action/init@v1
         with:
           config-path: .github/codeql/codeql-config.yml
-
+          
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
